@@ -54,6 +54,18 @@ let response =await Account.postTiktokFromUrl({
 ```
 
 
+#### upload images to tiktok
+
+
+```
+let Account=new tiktok.Account(access_token);
+let post_id= await Account.uploadImages({
+    images:["https://tiktokcdn.com/obj/example-image-01.webp","https://tiktokcdn.com/obj/example-image-02.webp"],
+    caption :"this will be a #funny photomode on your @tiktok #fyp"
+})
+
+```
+
 #### get user info
 
 ```
@@ -70,6 +82,8 @@ let TIKTOK_KEY="<TIKTOK_KEY>";
 let Account=new tiktok.Account(access_token);
 let data=await Account.refresh_token({app_key});
 ```
+
+
 
 <strong>Follow ME</strong>
 ***I will be very happy if you support me by following me or offering me a job***

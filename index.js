@@ -87,8 +87,8 @@ class Account {
         this.accessToken=accessToken;
         this.refresh_token=refresh_token;
     }
-    async initVideoOnInbox(video_url) {
-        let accessToken=this.accessToken;
+    async initVideoOnInbox(video_url ,accessToken) {
+        accessToken= accessToken|| this.accessToken ;
         let response=await fetch('https://open.tiktokapis.com/v2/post/publish/inbox/video/init/', {
             method: 'POST',
             headers: {
@@ -106,8 +106,8 @@ class Account {
         log(response);
         return response;
     }
-    async postTiktokFromUrl({video_url , privacy_level, title, video_cover_timestamp_ms}){
-        let access_token =this.accessToken;
+    async postTiktokFromUrl({video_url , privacy_level, title, video_cover_timestamp_ms},access_token ){
+        access_token =access_token || this.accessToken ;
         let response = await fetch('https://open.tiktokapis.com/v2/post/publish/video/init/', {
             method: 'POST',
             headers: {
@@ -131,7 +131,7 @@ class Account {
         return response;
     }
     async refresh_token({refresh_token, app_key}) {
-        refresh_token=this.refresh_token || refresh_token;
+        refresh_token= refresh_token ||this.refresh_token ;
         let response=await fetch('https://open-api.tiktok.com/oauth/refresh_token/', {
             method:'POST',
             headers :{
@@ -148,7 +148,7 @@ class Account {
 
     }
     async getUserInfo(access_token){
-        access_token =this.accessToken || access_token;
+        access_token = access_token || this.accessToken ;
         let response=await fetch('https://open.tiktokapis.com/v2/post/publish/creator_info/query/',{
             method :"POST",
             headers :{
@@ -158,5 +158,41 @@ class Account {
         });
         response=await response.json();
         return response;
+    }
+    async uploadImages({images,caption} ={images:[], caption :'testing images upload'}, access_token ) {
+        if (images.length ===0) throw 'their is no image in the array'
+        access_token = access_token || this.accessToken ;
+        let response=await fetch(`https://open.tiktokapis.com/v2/post/publish/content/init/`, {
+            method :'POST',
+            headers :{
+                'Content-Type': 'application/json' ,
+                'Authorization': `Bearer ${access_token}`,
+                'x-app-version': 'latest',
+                "Cache-control":"no-cache",
+                'User-Agent': 'nodejs-tiktok/1.0 '
+            },
+            body: JSON.stringify({
+                "post_info": {
+                    "title": caption,
+                    "description": caption
+                },
+                "source_info": {
+                    "source": "PULL_FROM_URL",
+                    "photo_cover_index": 0,
+                    "photo_images": images
+                },
+                "post_mode": "MEDIA_UPLOAD",
+                "media_type": "PHOTO"
+            })
+        });
+        response=await response.json().catch(error => {
+            return {
+                error : 'failed to parse json data'
+            }
+        });
+        log(response);
+        if (response.data?.publish_id ) return response.data.publish_id
+        if (response.error?.massage) throw response.error.massage
+        if (response.error) throw response.error
     }
 }

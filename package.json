@@ -1,16 +1,11 @@
 {
-  "dependencies": {
-    "awaiter.js": "^1.0.3",
-    "node-fetch": "^3.3.2",
-    "string-player": "^1.0.6"
-  },
-  "name": "tiktok-api",
-  "version": "1.0.0",
-  "description": "'This is a npm package for handling tiktok apis'",
+  "name": "lib-tiktok-api",
+  "version": "1.0.2",
+  "description": "This is a npm package for handling tiktok apis",
   "main": "index.js",
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "nodemon index.test.js"
   },
   "repository": {
     "type": "git",
@@ -18,12 +13,27 @@
   },
   "keywords": [
     "tiktok",
-    "tiktok-api"
+    "tiktok-api",
+    "tiktok-nodejs-sdk",
+    "tiktok-library", 
+    "lib-tiktok-api",
+    "tiktok-apis",
+    "tiktokapi",
+    "tiktokapis",
+    "node-tiktok",
+    "tiktok-nodejs",
+    "nodejs-tiktok"
   ],
   "author": "Abdei Mustafa Muhammad Mubtasim",
   "license": "ISC",
+  "dependencies": {
+    "awaiter.js": "^1.0.3",
+    "node-fetch": "^3.3.2",
+    "string-player": "^1.0.6"
+  },
   "bugs": {
     "url": "https://github.com/Mubtasimf443/tiktok-api/issues"
   },
-  "homepage": "https://github.com/Mubtasimf443/tiktok-api#readme"
+  "homepage": "https://github.com/Mubtasimf443/tiktok-api#readme",
+  "type": "module"
 }
