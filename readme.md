@@ -36,14 +36,20 @@ app.get('/callback',async function (req,res){
 
 #### init video upload to inbox
 ```
-let Account=new tiktok.Account(access_token);
+let Account=new tiktok.Account("<access_token>" ,'<refresh_token>');
 let data=await Account.initVideoOnInbox('https://gojushinryu.com/video-for-download');
 ```
+
+<b>access_token</b> is required in the <b>new tiktok.Account</b>  and <b>refresh_token</b> is not requied ,
+<br>
+<b>refresh_token</b> is only required when using <b>Account.updateTokens</b> api;
+
+
 
 #### upload video directly
 
 ```
-let Account=new tiktok.Account(access_token);
+let Account=new tiktok.Account(access_token ,refresh_token);
 let response =await Account.postTiktokFromUrl({
     video_url :'<VIDEO_URL>',
     privacy_level :'SELF_ONLY',
@@ -58,7 +64,7 @@ let response =await Account.postTiktokFromUrl({
 
 
 ```
-let Account=new tiktok.Account(access_token);
+let Account=new tiktok.Account(access_token ,refresh_token);
 let post_id= await Account.uploadImages({
     images:["https://tiktokcdn.com/obj/example-image-01.webp","https://tiktokcdn.com/obj/example-image-02.webp"],
     caption :"this will be a #funny photomode on your @tiktok #fyp"
@@ -69,7 +75,7 @@ let post_id= await Account.uploadImages({
 #### get user info
 
 ```
-let Account=new tiktok.Account(access_token);
+let Account=new tiktok.Account(access_token ,refresh_token);
 let data=await Account.getUserInfo()
 
 ```
@@ -79,7 +85,7 @@ let data=await Account.getUserInfo()
 
 ```
 let TIKTOK_KEY="<TIKTOK_KEY>";
-let Account=new tiktok.Account(access_token);
+let Account=new tiktok.Account(access_token ,refresh_token);
 let data=await Account.updateTokens({app_key});
 ```
 
