@@ -80,7 +80,7 @@ let data=await Account.getUserInfo()
 ```
 let TIKTOK_KEY="<TIKTOK_KEY>";
 let Account=new tiktok.Account(access_token);
-let data=await Account.refresh_token({app_key});
+let data=await Account.updateTokens({app_key});
 ```
 
 

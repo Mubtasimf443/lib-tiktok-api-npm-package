@@ -16,7 +16,7 @@ export default class Tiktok {
         this.key=key;
         this.secret=secret;
         this.redirect_uri=redirect_uri;
-        this.scope=scope || ['user.info.basic'] ;
+        this.scope=scope || ['user.info.basic'] ;// 
     }
     getAuthUrl(){
         let 
@@ -130,8 +130,8 @@ class Account {
         response = await response.json();
         return response;
     }
-    async refresh_token({refresh_token, app_key}) {
-        refresh_token= refresh_token ||this.refresh_token ;
+    async updateTokens({refresh_token, app_key}) {
+        refresh_token = refresh_token || this.refresh_token;
         let response=await fetch('https://open-api.tiktok.com/oauth/refresh_token/', {
             method:'POST',
             headers :{
