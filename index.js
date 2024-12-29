@@ -61,20 +61,18 @@ export default class Tiktok {
                 }
             }
         });
-        if (response.data) {
-            if (response.data.access_token && response.data.refresh_token) {
-                return {
-                    access_token:response.data.access_token ,
-                    refresh_token: response.data.refresh_token
-                }
-            } else if (!(response.data.access_token && response.data.refresh_token)) {
-                throw response;
+        
+
+        if (response.access_token && response.refresh_token) {
+            return {
+                access_token: response.access_token,
+                refresh_token: response.refresh_token
             }
-        }
+        } 
+        
         if (response.error) {
             return {
-                hasError :true,
-                error :response.error
+                error :response
             }
         };
         throw response;

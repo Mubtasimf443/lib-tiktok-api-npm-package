@@ -1,6 +1,6 @@
 {
   "name": "lib-tiktok-api",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "This is a npm package for handling tiktok apis",
   "main": "index.js",
   "devDependencies": {},
