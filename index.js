@@ -24,11 +24,11 @@ export default class Tiktok {
         redirect_uri=this.redirect_uri, 
         scope=this.scope;
         let params=(new URLSearchParams({
-            scope :scope.join(','),
             client_key,
+            response_type:'code',
+            scope :scope,
             redirect_uri,
-            state:Math.random().toString(36).substring(2),
-            response_type:'code'
+            state:Math.random().toString(36).substring(2)
         })).toString();
         return ( `https://www.tiktok.com/v2/auth/authorize?` +params);
     };
